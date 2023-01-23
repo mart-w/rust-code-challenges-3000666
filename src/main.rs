@@ -1,5 +1,19 @@
 fn median(a: Vec<f32>) -> Option<f32> {
-    todo!();
+    if a.is_empty() {
+        return None;
+    }
+
+    let mut a_clone = a.clone();
+
+    a_clone.sort_by(|a, b| a.partial_cmp(b).unwrap());
+
+    let middle_index = a_clone.len() / 2;
+
+    if middle_index * 2 == a_clone.len() {
+        Some((a_clone[middle_index - 1] + a_clone[middle_index]) / 2.0)
+    } else {
+        Some(a_clone[middle_index])
+    }
 }
 
 fn main() {
